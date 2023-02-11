@@ -13,7 +13,7 @@ import 'package:dav/dav.dart';
 // import local code
 import 'package:damt/yesno.dart';
 
-const String applicationVersion = "0.1.1";
+const String applicationVersion = "0.1.2";
 
 void main(List<String> arguments) async {
   var parser = ArgParser();

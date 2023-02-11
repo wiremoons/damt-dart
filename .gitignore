@@ -1,11 +1,33 @@
-# See https://www.dartlang.org/guides/libraries/private-files
-
-# Files and directories created by pub
+# Files and directories created by pub.
 .dart_tool/
 .packages
+
+# Conventional directory for build output.
 build/
-# If you're building an application, you may want to check-in your pubspec.lock
-pubspec.lock
+
+# recommend to commit for application
+# pubspec.lock
+
+# Editor configs
+.vscode/
+
+# IntelliJ / Webstorm
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Mac
+.DS_Store
+
+# key files
+keys.*
+Keys.*
+key.*
+Key.*
+
+# Databbase files
+*.db
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.

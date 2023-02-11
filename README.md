@@ -1,4 +1,4 @@
-[![Dart](https://github.com/wiremoons/damt/actions/workflows/dart.yml/badge.svg)](https://github.com/wiremoons/damt/actions/workflows/dart.yml)
+[![damt](https://github.com/wiremoons/damt/actions/workflows/dart.yml/badge.svg)](https://github.com/wiremoons/damt/actions/workflows/dart.yml)
 
 # damt
 

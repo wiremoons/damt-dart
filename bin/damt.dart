@@ -11,7 +11,7 @@ import 'package:args/args.dart';
 import 'package:dav/dav.dart';
 
 // import local code
-import 'package:damt/yesno.dart';
+// import 'package:damt/yesno.dart';
 
 const String applicationVersion = "0.1.2";
 
@@ -63,13 +63,13 @@ void main(List<String> arguments) async {
     exit(0);
   }
 
-  // display available Dart SDK version and the installed current one
+  // search the database for the value provided on the command line
   if (cliResults.wasParsed('search')) {
     stdout.writeln("search - not implemented yet....");
     exit(0);
   }
 
-  // Install or reinstall the latest Dart SDk version
+  // delete the database acronym record provided on the command line
   if (cliResults.wasParsed('delete')) {
     stdout.writeln("delete - not implemented yet....");
     exit(0);

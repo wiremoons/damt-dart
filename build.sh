@@ -18,8 +18,8 @@ check_status () {
   return
 }
 
-printf "\n\n [*]  Ruuning 'dart pub get' to install dependencies...\n\n"
-dart pub get
+printf "\n\n [*]  Ruuning 'dart pub update' to check packages are current...\n\n"
+dart pub update
 printf "\n\n [*]  Ruuning 'dart foramt' to check source code files...\n\n"
 dart format --output=none --set-exit-if-changed .
 printf "\n\n [*]  Ruuning 'dart analyse' to check source code files...\n\n"

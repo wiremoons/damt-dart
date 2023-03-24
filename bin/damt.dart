@@ -5,6 +5,9 @@
 //   dart compile exe -DDART_BUILD="Built on: $(date)" ./bin/damt.dart -o ./build/damt.exe
 // Run with:
 //   dart run
+//
+// Comment added via VSC in Blink Shell
+//
 
 import 'dart:io';
 import 'package:args/args.dart';

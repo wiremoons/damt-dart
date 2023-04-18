@@ -1,6 +1,6 @@
 name: damt  
 description: Command-line application to manage a database of acronyms.
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/wiremoons/damt
 
 platforms:

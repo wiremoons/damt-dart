@@ -6,8 +6,8 @@
 // Run with:
 //   dart run
 //
-// Comment added via VSC in Blink Shell
-//
+// Disable some specific linting rules in this file only
+// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_string_interpolations
 
 import 'dart:io';
 import 'package:args/args.dart';
@@ -16,7 +16,8 @@ import 'package:dav/dav.dart';
 // import local code
 // import 'package:damt/yesno.dart';
 
-const String applicationVersion = "0.1.2";
+const String applicationVersion = "0.1.3";
+const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
   var parser = ArgParser();
@@ -45,7 +46,7 @@ void main(List<String> arguments) async {
       stdout.writeln(
           "\nCommand-line application to manage a database of acronyms.\n");
       stdout.writeln("Usage:\n${parser.usage}\n");
-      stdout.writeln("Copyright © 2023 Simon Rowe <simon@wiremoons.com>");
+      stdout.writeln("${copyright}");
       stdout.writeln("https://github.com/wiremoons/damt");
       exit(0);
     }

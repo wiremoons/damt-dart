@@ -1,5 +1,6 @@
-//
+// Dart Acronym Management Tool (DAMT)
 // Copyright 2023 Simon Rowe (simon@wiremoons.com).
+// https://github.com/wiremoons/damt
 //
 // Build exe with:
 //   dart compile exe -DDART_BUILD="Built on: $(date)" ./bin/damt.dart -o ./build/damt.exe

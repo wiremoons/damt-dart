@@ -25,7 +25,7 @@ jobs:
       # Change below to use a different Dart SDK version:
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: 2.19.5
+          sdk: 2.19.6
       
       - name: Install dependencies
         run: dart pub get

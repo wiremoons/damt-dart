@@ -17,6 +17,7 @@ import 'package:dav/dav.dart';
 // import local code
 // import 'package:damt/yesno.dart';
 
+// set values to be used with package: dav and for help output
 const String applicationVersion = "0.1.3";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 

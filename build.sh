@@ -29,6 +29,6 @@ if [[ ! -d ./build ]]; then
   mkdir ./build
   check_status
 fi
-dart compile exe -DDART_BUILD="Built on: $(date)" ./bin/$DARTAPP.dart -o ./build/$DARTAPP
+dart compile exe -DDART_BUILD="Built on: $(date '+%a %d %b %Y @ %H:%M:%S %Z')" ./bin/$DARTAPP.dart -o ./build/$DARTAPP
 check_status
 printf "\n [✔]  Build completed.  Run: ./build/%s\n" "$DARTAPP"

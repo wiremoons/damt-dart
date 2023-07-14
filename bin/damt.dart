@@ -16,6 +16,8 @@ import 'package:dav/dav.dart';
 
 // import local code
 // import 'package:damt/yesno.dart';
+import 'package:damt/dbquery.dart';
+import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
 const String applicationVersion = "0.1.3";
@@ -71,6 +73,10 @@ void main(List<String> arguments) async {
 
   // search the database for the value provided on the command line
   if (cliResults.wasParsed('search')) {
+    sqliteVersion();
+    Damt damt = Damt();
+    damt = await damt.create();
+    stdout.writeln("dbFileName is: ${damt.dbFileName}");
     stdout.writeln("search - not implemented yet....");
     exit(0);
   }

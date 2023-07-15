@@ -1,6 +1,7 @@
 ## v0.2.0
 - Add initial code and support for interaction with SQLite databases
 - Add new source code files: `dbquery.dart`, `records.dart`; and `sys_utils.dart`
+- start detection of SQlite database file methods
 
 ## v0.1.3
 - Up lift Dart SDK build version to: v3.0.0

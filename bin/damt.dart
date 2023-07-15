@@ -20,7 +20,7 @@ import 'package:damt/dbquery.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.1.3";
+const String applicationVersion = "0.2.0";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -75,7 +75,7 @@ void main(List<String> arguments) async {
   if (cliResults.wasParsed('search')) {
     sqliteVersion();
     Damt damt = Damt();
-    damt = await damt.create();
+    await damt.create();
     stdout.writeln("dbFileName is: ${damt.dbFileName}");
     stdout.writeln("search - not implemented yet....");
     exit(0);

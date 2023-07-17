@@ -19,7 +19,7 @@
 // SEARCH:
 //       "select rowid,ifnull(Acronym,''),ifnull(Definition,''),ifnull(Source,''),ifnull(Description,''),ifnull(Changed,'') from ACRONYMS where Acronym like ? collate nocase order by Source;",
 
-import 'dart:io';
+// import 'dart:io';
 import 'package:sqlite3/sqlite3.dart';
 
 void sqliteVersion() {

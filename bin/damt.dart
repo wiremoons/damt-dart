@@ -16,11 +16,11 @@ import 'package:dav/dav.dart';
 
 // import local code
 // import 'package:damt/yesno.dart';
-import 'package:damt/dbquery.dart';
+// import 'package:damt/dbquery.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.2.0";
+const String applicationVersion = "0.2.1";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -73,10 +73,8 @@ void main(List<String> arguments) async {
 
   // search the database for the value provided on the command line
   if (cliResults.wasParsed('search')) {
-    sqliteVersion();
     Damt damt = Damt();
     await damt.create();
-    stdout.writeln("dbFileName is: ${damt.dbFileName}");
     stdout.writeln("search - not implemented yet....");
     exit(0);
   }
@@ -95,7 +93,16 @@ void main(List<String> arguments) async {
     exit(2);
   }
 
-  // no command line options selected so just exit the application
+  // no command line options selected so print summary of application info and exit the application
+  final version = Dav(appVersion: applicationVersion);
+  version.display();
+  stdout.writeln("");
+  Damt damt = Damt();
+  await damt.create();
+  stdout.writeln("Database full path:        ${damt.dbFileName}");
+  stdout.writeln("Database file size:        ${damt.dbSize}");
+  stdout.writeln("Database last modified:    ${damt.dbLastAccess}");
+  stdout.writeln("");
   stderr.writeln("\nValid options are:\n${parser.usage}");
   exit(0);
 }

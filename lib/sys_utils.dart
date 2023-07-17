@@ -64,9 +64,11 @@ String homePathLocation() {
 
 /// Show the size of a file with the correct suffix such as 'MB' or 'GB' etc
 //
-// For the provided filename and path check the file size and return it as a String
+// For the provided filename and path [filePath] - check the file size and return it as a String
 // with an appended suffix to reflect if it is 'MB', 'TB', etc.
-Future<String> getFileSize(String filePath, int displayDecimals) async {
+// The [displayDecimals] parameter controls how many decimal places should be included in the
+// file size string.
+Future<String> fileSizeAsString(String filePath, int displayDecimals) async {
   // TODO: check for non existent file scenario before checking its length?
   int bytes = await File(filePath).length();
   if (bytes <= 0) return "0 B";
@@ -119,4 +121,30 @@ Future<bool> exeFileExists(String dirPath, String appName) async {
   // check of the executable exists at the provided path
   final exePath = File(p.join(dirPath, findExe));
   return await exePath.exists();
+}
+
+/// Obtain the [file] last modified date if the file exists and return it.
+///
+///
+Future<String> fileLastModified(String file) async {
+  if (await File(file).exists()) {
+    try {
+      DateTime fileDT = await File(file).lastModified();
+      return fileDT.toLocal().toString();
+    } catch (e) {
+      stderr.writeln("ERROR: unable to obtain '$file}' modified time: {e}");
+      return "UNKNOWN";
+    }
+  }
+  return "UNKNOWN";
+}
+
+// Return the path element of a full path that includes a file name
+//
+//
+Future<(String, bool)> directoryNameOnly(String filePath) async {
+  if (await File(filePath).exists()) {
+    return (p.dirname(filePath), true);
+  }
+  return ("", false);
 }

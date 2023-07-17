@@ -1,3 +1,12 @@
+## v0.2.1
+- update `.gitignore` simplfied existing contents
+- add build file for Windows as `win-build.bat`
+- add `.gitattributes` to protect Windows file format on `win-build.bat`
+- add `damt.exe` to `.gitignore`
+- add features to `Damt` constructor to get path, filename, size, and last modified of located database
+- update default output to provide a summary information for the application as a default output
+- add ability to find database file named `acronyms.db` in the same directory as the `damt` binary
+
 ## v0.2.0
 - Add initial code and support for interaction with SQLite databases
 - Add new source code files: `dbquery.dart`, `records.dart`; and `sys_utils.dart`
@@ -6,11 +15,11 @@
 ## v0.1.3
 - Up lift Dart SDK build version to: v3.0.0
 - Updated packages to new major versions for better Dart v3 support.
-- Improve the date format used for version display in the 'build.sh' script
+- Improve the date format used for version display in the `build.sh` script
 
 ## v0.1.2
 - Add Github Actions for CI builds
-- Add additional step to run 'dart pub get' in the 'build.sh' script
+- Add additional step to run `dart pub get` in the `build.sh` script
 - Start to add comments to support the code documentation
 - Merge branch 'main' from edits made on web site repo directly
 - Update Github Action to use latest Dart SDK 2.19.5

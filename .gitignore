@@ -5,6 +5,9 @@
 # Conventional directory for build output.
 build/
 
+# Built Windows binary file
+damt.exe
+
 # recommend to commit for application
 # pubspec.lock
 
@@ -21,10 +24,8 @@ build/
 .DS_Store
 
 # key files
-keys.*
-Keys.*
-key.*
-Key.*
+[Kk]eys.*
+[Kk]ey.*
 
 # Databbase files
 *.db

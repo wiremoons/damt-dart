@@ -20,7 +20,7 @@ import 'package:dav/dav.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.2.1";
+const String applicationVersion = "0.3.0";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -103,6 +103,9 @@ void main(List<String> arguments) async {
   stdout.writeln("Database file size:        ${damt.dbSize}");
   stdout.writeln("Database last modified:    ${damt.dbLastAccess}");
   stdout.writeln("");
+  stdout.writeln("SQLite version:            ${damt.dbSqliteVersion}");
+  stdout.writeln("Total acronyms:            ${damt.dbRecordCount}");
+  stdout.writeln("Last acronym added:        ${damt.dbNewestAcronym}");
   stderr.writeln("\nValid options are:\n${parser.usage}");
   exit(0);
 }

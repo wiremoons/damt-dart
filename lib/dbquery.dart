@@ -25,3 +25,30 @@ import 'package:sqlite3/sqlite3.dart';
 void sqliteVersion() {
   print('Using sqlite3 ${sqlite3.version}');
 }
+
+class DbManage {
+  static late final String dbPath;
+  static late final Database db;
+
+  DbManage(String dBPath) {
+    dbPath = dBPath;
+    db = sqlite3.open(dbPath);
+  }
+
+  // Obtain the SQLite database version
+  String sqliteVersion() {
+    return db.select("select sqlite_version();").toString();
+  }
+
+  // Obtain the number of acronyms in the database
+  String recordCount() {
+    return db.select("select count(*) from acronyms;").toString();
+  }
+
+  // Obtain the last acronym entered into the database
+  String lastAcronym() {
+    return db
+        .select("select acronym from acronyms order by rowid desc limit 1;")
+        .toString();
+  }
+}

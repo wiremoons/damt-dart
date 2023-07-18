@@ -1,3 +1,8 @@
+## v0.3.0
+- Add database connectivity via new class `DbManage` in `dbquery.dart`
+- Add new database queries to obtain record count, SQLite version, and newest acronym entered
+- Add new database output to default run output
+
 ## v0.2.1
 - update `.gitignore` simplfied existing contents
 - add build file for Windows as `win-build.bat`

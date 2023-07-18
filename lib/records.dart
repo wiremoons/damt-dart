@@ -9,15 +9,16 @@ import 'package:path/path.dart' as p;
 
 // local source code imports
 import 'package:damt/sys_utils.dart';
+import 'package:damt/dbquery.dart';
 
 class Damt {
   String dbFullPath;
   String dbFileName;
   String? dbSize;
   String? dbLastAccess;
-  // final String dbSqliteVersion?;
-  // var String dbRecordCount?;
-  // var String dbNewestAcronym?;
+  String? dbSqliteVersion;
+  String? dbRecordCount;
+  String? dbNewestAcronym;
 
   // Initial constructor - sets [dbFileName] to an empty value.
   Damt()
@@ -43,6 +44,11 @@ class Damt {
     dbFileName = dbPath;
     dbSize = await fileSizeAsString(dbFullPath, 2);
     dbLastAccess = await fileLastModified(dbFullPath);
+    //
+    DbManage dbConn = DbManage(dbFullPath);
+    dbSqliteVersion = dbConn.sqliteVersion();
+    dbRecordCount = dbConn.recordCount();
+    dbNewestAcronym = dbConn.lastAcronym();
   }
 
   /////////////////////////////////////////////////////////////////////////////

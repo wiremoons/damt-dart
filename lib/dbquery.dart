@@ -47,8 +47,13 @@ class DbManage {
 
   // Obtain the last acronym entered into the database
   String lastAcronym() {
-    return db
-        .select("select acronym from acronyms order by rowid desc limit 1;")
-        .toString();
+    ResultSet result =
+        db.select("select acronym from acronyms order by rowid desc limit 1;");
+    return result.rows.last.toString();
+  }
+
+  // Close the database connection
+  void closeDatabase() {
+    db.dispose();
   }
 }

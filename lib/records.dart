@@ -19,6 +19,7 @@ class Damt {
   String? dbSqliteVersion;
   String? dbRecordCount;
   String? dbNewestAcronym;
+  late DbManage dbConn;
 
   // Initial constructor - sets [dbFileName] to an empty value.
   Damt()
@@ -44,11 +45,16 @@ class Damt {
     dbFileName = dbPath;
     dbSize = await fileSizeAsString(dbFullPath, 2);
     dbLastAccess = await fileLastModified(dbFullPath);
-    //
-    DbManage dbConn = DbManage(dbFullPath);
+    // Access the database to extract the required information
+    dbConn = DbManage(dbFullPath);
     dbSqliteVersion = dbConn.sqliteVersion();
     dbRecordCount = dbConn.recordCount();
     dbNewestAcronym = dbConn.lastAcronym();
+  }
+
+  void dbClose() {
+    // TODO: check exists before call
+    dbConn.closeDatabase();
   }
 
   /////////////////////////////////////////////////////////////////////////////

@@ -1,3 +1,7 @@
+## v0.3.1
+- Add database connection handle to `Damt` class as late binding
+- Add method to close database handle when needed
+
 ## v0.3.0
 - Add database connectivity via new class `DbManage` in `dbquery.dart`
 - Add new database queries to obtain record count, SQLite version, and newest acronym entered

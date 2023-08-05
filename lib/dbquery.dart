@@ -39,24 +39,39 @@ class DbManage {
 
   // Search for the provided acronym in the SQLite database and output any records found.
   // Search the SQLite database for [findValue] and return `true` if any records are found.
-  bool acronymSearch(String findValue) {
-    // fail immediatly of no search valoue if provided
-    if (findValue.isEmpty) return false;
+  int acronymSearch(String findValue) {
+    int findCount = 0;
+    // fail immediatly if no search valoue if provided
+    if (findValue.isEmpty) return findCount;
+    // execute the search using [findValue] as the search value.
     ResultSet searchResult = db.select(
         "select rowid, ifnull(Acronym,'') as acronym, ifnull(Definition,'') as definition, ifnull(Source,'') as source,ifnull(Description,'') as description, ifnull(Changed,'') as changed from ACRONYMS where Acronym like ? collate nocase order by Source;",
         [findValue]);
-    // output any results found
+    // check a result was found by the SQLite search - otherwise return
+    if (searchResult.isEmpty) return findCount;
+    stdout.writeln("");
+    DateFormat dTFormatter =
+        DateFormat('E dd MMMM yyyy @ HH:mm:ss'); // yyyy-MM-dd HH:mm:ss
+    // output any results found tracking the number of records output
     for (final Row row in searchResult) {
+      String lastChanged;
+      int epoch = int.tryParse(row['changed']) ?? 0;
+      epoch > 0
+          ? lastChanged = dTFormatter
+              .format(
+                  DateTime.fromMillisecondsSinceEpoch(epoch * 1000).toLocal())
+              .toString()
+          : lastChanged = "Unknown";
       stdout.writeln("""
-ID: '${row['rowid']}'
-ACRONYM:     '${row['acronym']}' is '${row['definition']}'
+ID:          '${row['rowid']}'
+ACRONYM:     '${row['acronym']}' is '${row['definition']}'.
 SOURCE:      '${row['source']}'
-LAST CHANGED: '${row['changed']}'
-DESCRIPTION:  ${row['description']}
-        '""");
-      // stdout.writeln("${row}");
+LAST CHANGE: '${lastChanged}'
+DESCRIPTION: ${row['description']}
+        """);
+      findCount++;
     }
-    return true;
+    return findCount;
   }
 
   // Obtain the SQLite database version

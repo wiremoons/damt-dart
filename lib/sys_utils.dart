@@ -139,7 +139,7 @@ Future<String> fileLastModified(String file) async {
   return "UNKNOWN";
 }
 
-// Return the path element of a full path that includes a file name
+// Return just the path element of a full path - so removing any file name.
 //
 //
 Future<(String, bool)> directoryNameOnly(String filePath) async {

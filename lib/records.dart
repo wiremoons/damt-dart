@@ -52,7 +52,7 @@ class Damt {
     dbNewestAcronym = dbConn.lastAcronym();
   }
 
-  bool dbSearch(String findme) {
+  int dbSearch(String findme) {
     return dbConn.acronymSearch(findme);
   }
 

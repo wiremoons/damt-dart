@@ -20,7 +20,7 @@ import 'package:dav/dav.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.3.2";
+const String applicationVersion = "0.3.3";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -85,8 +85,10 @@ void main(List<String> arguments) async {
   if (cliResults.wasParsed('search')) {
     Damt damt = Damt();
     await damt.create();
-    bool ok = damt.dbSearch("bug");
-    stdout.writeln("search: ${ok}");
+    int findCount = damt.dbSearch("bug%");
+    stdout.writeln(
+        "Search of '${damt.dbRecordCount}' records for 'bug' found '${findCount}' matches.");
+    damt.dbClose();
     exit(0);
   }
 

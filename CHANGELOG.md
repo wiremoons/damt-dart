@@ -1,3 +1,8 @@
+## v0.3.3
+- Improve the search feature and its record output formating
+- Display the number of matching records found when a search succeeds
+- Add ability to convert epoch to date time string for last record update output
+
 ## v0.3.2
 - Correctly extract SQLite version data from `ResultSet`
 - Correctly extract acronym record count from `ResultSet` and add thousands seperator.

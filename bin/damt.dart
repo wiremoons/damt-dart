@@ -20,23 +20,28 @@ import 'package:dav/dav.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.3.1";
+const String applicationVersion = "0.3.2";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
   var parser = ArgParser();
   late ArgResults cliResults;
 
-  parser.addFlag('search',
-      abbr: 's',
-      negatable: false,
-      defaultsTo: false,
-      help: 'Search database for provided acronym.');
   parser.addFlag('delete',
       abbr: 'd',
       negatable: false,
       defaultsTo: false,
       help: 'Delete an acronym record for provided id.');
+  parser.addFlag('latest',
+      abbr: 'l',
+      negatable: false,
+      defaultsTo: false,
+      help: 'Show the five newest acronyms records.');
+  parser.addFlag('search',
+      abbr: 's',
+      negatable: false,
+      defaultsTo: false,
+      help: 'Search database for provided acronym.');
   parser.addFlag('version',
       abbr: 'v',
       negatable: false,
@@ -58,6 +63,11 @@ void main(List<String> arguments) async {
 
   try {
     cliResults = parser.parse(arguments);
+  } on FormatException catch (e) {
+    // code for handling FormatException
+    stderr.writeln("ERROR: incorrect input '${e}'");
+    stderr.writeln("\nValid options are:\n${parser.usage}");
+    exit(1);
   } catch (e) {
     stderr.writeln("\nERROR: unknown exception '${e}'");
     stderr.writeln("\nValid options are:\n${parser.usage}");
@@ -75,7 +85,16 @@ void main(List<String> arguments) async {
   if (cliResults.wasParsed('search')) {
     Damt damt = Damt();
     await damt.create();
-    stdout.writeln("search - not implemented yet....");
+    bool ok = damt.dbSearch("bug");
+    stdout.writeln("search: ${ok}");
+    exit(0);
+  }
+
+  // Display the latest 5 entries in the database
+  if (cliResults.wasParsed('latest')) {
+    Damt damt = Damt();
+    await damt.create();
+    stdout.writeln("latest - not implemented yet....");
     exit(0);
   }
 
@@ -105,7 +124,7 @@ void main(List<String> arguments) async {
   stdout.writeln("");
   stdout.writeln("SQLite version:            ${damt.dbSqliteVersion}");
   stdout.writeln("Total acronyms:            ${damt.dbRecordCount}");
-  stdout.writeln("Last acronym added:        ${damt.dbNewestAcronym}");
+  stdout.writeln("Last acronym added:        '${damt.dbNewestAcronym}'");
   stderr.writeln("\nValid options are:\n${parser.usage}");
   damt.dbClose();
   exit(0);

@@ -52,6 +52,10 @@ class Damt {
     dbNewestAcronym = dbConn.lastAcronym();
   }
 
+  bool dbSearch(String findme) {
+    return dbConn.acronymSearch(findme);
+  }
+
   void dbClose() {
     // TODO: check exists before call
     dbConn.closeDatabase();

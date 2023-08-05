@@ -1,3 +1,10 @@
+## v0.3.2
+- Correctly extract SQLite version data from `ResultSet`
+- Correctly extract acronym record count from `ResultSet` and add thousands seperator.
+- Correctly extract last added acronym record from `ResultSet` and quote on output.
+- Improve CLI flags parse error catch to be specific on incorrect input.
+- Add start of search functionality.
+
 ## v0.3.1
 - Add database connection handle to `Damt` class as late binding
 - Add method to close database handle when needed

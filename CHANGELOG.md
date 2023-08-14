@@ -1,11 +1,15 @@
+## v0.3.4
+- Fix spelling typos in code comments and `CHANGELOG.md`
+- 
+
 ## v0.3.3
-- Improve the search feature and its record output formating
+- Improve the search feature and its record output formatting
 - Display the number of matching records found when a search succeeds
 - Add ability to convert epoch to date time string for last record update output
 
 ## v0.3.2
 - Correctly extract SQLite version data from `ResultSet`
-- Correctly extract acronym record count from `ResultSet` and add thousands seperator.
+- Correctly extract acronym record count from `ResultSet` and add thousands separator.
 - Correctly extract last added acronym record from `ResultSet` and quote on output.
 - Improve CLI flags parse error catch to be specific on incorrect input.
 - Add start of search functionality.
@@ -20,7 +24,7 @@
 - Add new database output to default run output
 
 ## v0.2.1
-- update `.gitignore` simplfied existing contents
+- update `.gitignore` simplified existing contents
 - add build file for Windows as `win-build.bat`
 - add `.gitattributes` to protect Windows file format on `win-build.bat`
 - add `damt.exe` to `.gitignore`
@@ -28,22 +32,22 @@
 - update default output to provide a summary information for the application as a default output
 - add ability to find database file named `acronyms.db` in the same directory as the `damt` binary
 
-## v0.2.0
+## v0.2.0
 - Add initial code and support for interaction with SQLite databases
 - Add new source code files: `dbquery.dart`, `records.dart`; and `sys_utils.dart`
-- start detection of SQlite database file methods
+- start detection of SQLite database file methods
 
 ## v0.1.3
-- Up lift Dart SDK build version to: v3.0.0
+- Uplift Dart SDK build version to: v3.0.0
 - Updated packages to new major versions for better Dart v3 support.
 - Improve the date format used for version display in the `build.sh` script
 
 ## v0.1.2
-- Add Github Actions for CI builds
+- Add GitHub Actions for CI builds
 - Add additional step to run `dart pub get` in the `build.sh` script
 - Start to add comments to support the code documentation
-- Merge branch 'main' from edits made on web site repo directly
-- Update Github Action to use latest Dart SDK 2.19.5
+- Merge branch 'main' from edits made on website repo directly
+- Update GitHub Action to use latest Dart SDK 2.19.5
 - Add linting rule. Update version to v0.1.3. Make copyright statement in help output a const String
 - Improve header comments in each source code file
 
@@ -52,4 +56,4 @@
 
 ## v0.1.0
 - Initial commit of source code basic file structure
-- Addtional entries added to Git ignore config file
+- Additional entries added to Git ignore config file

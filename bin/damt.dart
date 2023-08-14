@@ -20,7 +20,7 @@ import 'package:dav/dav.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.3.3";
+const String applicationVersion = "0.3.4";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {

@@ -37,7 +37,7 @@ class Damt {
     bool exists = false;
     (dbPath, exists) = await _findDbPath();
     if (!exists) {
-      stderr.writeln("ABORT: No SQlite database file available.");
+      stderr.writeln("ABORT: No SQLite database file available.");
       exit(1);
     }
     // Populate the Damt class fields with SQLite database info:
@@ -65,7 +65,7 @@ class Damt {
   //    PRIVATE METHODS BELOW
   /////////////////////////////////////////////////////////////////////////////
 
-  // Check for a file to be used for the SQlite database.
+  // Check for a file to be used for the SQLite database.
   Future<(String, bool)> _findDbPath() async {
     String dbPath = "";
     bool exists = false;
@@ -87,7 +87,7 @@ class Damt {
 
   Future<(String, bool)> _localHasDb() async {
     final fullAppPath = Platform.resolvedExecutable;
-    // remove execuable name from fill path
+    // remove executable name from fill path
     String onlyAppPath = "";
     bool exists = false;
     (onlyAppPath, exists) = await directoryNameOnly(fullAppPath);

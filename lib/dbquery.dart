@@ -41,7 +41,7 @@ class DbManage {
   // Search the SQLite database for [findValue] and return `true` if any records are found.
   int acronymSearch(String findValue) {
     int findCount = 0;
-    // fail immediatly if no search valoue if provided
+    // fail immediately if no search value if provided
     if (findValue.isEmpty) return findCount;
     // execute the search using [findValue] as the search value.
     ResultSet searchResult = db.select(
@@ -88,7 +88,7 @@ DESCRIPTION: ${row['description']}
     if (countResult.isEmpty) return "";
     // extract from:  [{count(*): 18188}]
     int count = countResult[0]["count(*)"];
-    // configure the number formatter to add thousands seperator and no decimal places.
+    // configure the number formatter to add thousands separator and no decimal places.
     NumberFormat formatter = NumberFormat.decimalPatternDigits(
       locale: 'en_uk',
       decimalDigits: 0,

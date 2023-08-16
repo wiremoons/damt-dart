@@ -1,6 +1,8 @@
-## v0.3.4
+## v0.4.0
 - Fix spelling typos in code comments and `CHANGELOG.md`
-- 
+- Add remaining functionality to search for a specific acronym with `-s/-search` cli option
+- updates to supporting packages following update to Dart SDK `v3.1.0`
+- add new feature to perform search without use of `-s/--search` as a default execution
 
 ## v0.3.3
 - Improve the search feature and its record output formatting

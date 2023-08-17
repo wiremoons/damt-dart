@@ -15,12 +15,10 @@ import 'package:args/args.dart';
 import 'package:dav/dav.dart';
 
 // import local code
-// import 'package:damt/yesno.dart';
-// import 'package:damt/dbquery.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.4.0";
+const String applicationVersion = "0.4.1";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -85,11 +83,18 @@ void main(List<String> arguments) async {
     exit(0);
   }
 
-  // display the latest 5 entries in the database
+  // display the latest newly added 5 entries in the database
   if (cliResults.wasParsed('latest')) {
     Damt damt = Damt();
     await damt.create();
-    stdout.writeln("latest - not implemented yet...");
+    int found = damt.dbLatest();
+    if (found != 5) {
+      stderr.writeln(
+          "\nERROR: expecting five (5) records for latest records search but got: '${found}'.");
+      exit(3);
+    }
+    stdout.writeln("Search of '${damt.dbRecordCount}' records found '${found}' matches.");
+    damt.dbClose();
     exit(0);
   }
 

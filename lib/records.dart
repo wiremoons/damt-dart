@@ -32,7 +32,7 @@ class Damt {
       stdout.writeln("ERROR:  [!] 'Damt.create()' method already run.");
       return;
     }
-    // find a database file to be used, else throw an error.
+    // find a database file to be used, else display an error and exit.
     String dbPath = "";
     bool exists = false;
     (dbPath, exists) = await _findDbPath();
@@ -54,6 +54,10 @@ class Damt {
 
   int dbSearch(String findme) {
     return dbConn.acronymSearch(findme);
+  }
+
+  int dbLatest() {
+    return dbConn.latestAcronyms();
   }
 
   void dbClose() {

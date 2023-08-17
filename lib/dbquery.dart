@@ -24,10 +24,6 @@ import 'dart:io';
 import 'package:sqlite3/sqlite3.dart';
 import 'package:intl/intl.dart';
 
-void sqliteVersion() {
-  print('Using sqlite3 ${sqlite3.version}');
-}
-
 class DbManage {
   static late final String dbPath;
   static late final Database db;
@@ -61,6 +57,39 @@ class DbManage {
               .format(
                   DateTime.fromMillisecondsSinceEpoch(epoch * 1000).toLocal())
               .toString()
+          : lastChanged = "Unknown";
+      stdout.writeln("""
+ID:          '${row['rowid']}'
+ACRONYM:     '${row['acronym']}' is '${row['definition']}'.
+SOURCE:      '${row['source']}'
+LAST CHANGE: '${lastChanged}'
+DESCRIPTION: ${row['description']}
+        """);
+      findCount++;
+    }
+    return findCount;
+  }
+
+  // Search for the latest 5 newest acronyms in the SQLite database and output any records found.
+  // Return `true` if any records are found.
+  int latestAcronyms() {
+    int findCount = 0;
+    ResultSet searchResult = db.select(
+      "select rowid, ifnull(Acronym,'') as acronym, ifnull(Definition,'') as definition, ifnull(Source,'') as source,ifnull(Description,'') as description, ifnull(Changed,'') as changed from ACRONYMS Order by rowid DESC LIMIT 5;",);
+    // check a result was found by the SQLite search - otherwise return
+    if (searchResult.isEmpty) return findCount;
+    stdout.writeln("");
+    DateFormat dTFormatter =
+    DateFormat('E dd MMMM yyyy @ HH:mm:ss'); // yyyy-MM-dd HH:mm:ss
+    // output any results found tracking the number of records output
+    for (final Row row in searchResult) {
+      String lastChanged;
+      int epoch = int.tryParse(row['changed']) ?? 0;
+      epoch > 0
+          ? lastChanged = dTFormatter
+          .format(
+          DateTime.fromMillisecondsSinceEpoch(epoch * 1000).toLocal())
+          .toString()
           : lastChanged = "Unknown";
       stdout.writeln("""
 ID:          '${row['rowid']}'

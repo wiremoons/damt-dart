@@ -1,6 +1,11 @@
+## v0.4.1
+- Fixed spelling typos in the Unix build scipt: `build.sh`
+- Remove unused function in `dbquery.dart` for showing the SQLite version as no included as a method
+- Implement the `-l/--latest` cli option to show the 5 newest records added to the acronyms database
+
 ## v0.4.0
 - Fix spelling typos in code comments and `CHANGELOG.md`
-- Add remaining functionality to search for a specific acronym with `-s/-search` cli option
+- Add remaining functionality to search for a specific acronym with `-s/--search` cli option
 - updates to supporting packages following update to Dart SDK `v3.1.0`
 - add new feature to perform search without use of `-s/--search` as a default execution
 

@@ -1,3 +1,10 @@
+## v0.4.2
+- Impove build script to check for error at each step, and add `dart fix -n` as new check.
+- Add instructions for SQLite library install for Debian and Ubuntu to the `README.md`.
+- Update Github CI build to use Dart version 3.1.2.
+- Updates to dependency versions in `pubspec.lock`.
+- Catch exception when SQLite dynamic library is not found - provide instructions to install.
+
 ## v0.4.1
 - Fixed spelling typos in the Unix build scipt: `build.sh`
 - Remove unused function in `dbquery.dart` for showing the SQLite version as no included as a method
@@ -6,8 +13,8 @@
 ## v0.4.0
 - Fix spelling typos in code comments and `CHANGELOG.md`
 - Add remaining functionality to search for a specific acronym with `-s/--search` cli option
-- updates to supporting packages following update to Dart SDK `v3.1.0`
-- add new feature to perform search without use of `-s/--search` as a default execution
+- Updates to supporting packages following update to Dart SDK `v3.1.0`
+- Add new feature to perform search without use of `-s/--search` as a default execution
 
 ## v0.3.3
 - Improve the search feature and its record output formatting

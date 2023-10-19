@@ -18,7 +18,7 @@ import 'package:dav/dav.dart';
 import 'package:damt/records.dart';
 
 // set values to be used with package: dav and for help output
-const String applicationVersion = "0.4.1";
+const String applicationVersion = "0.4.2";
 const String copyright = "Copyright © 2023 Simon Rowe <simon@wiremoons.com>";
 
 void main(List<String> arguments) async {
@@ -93,7 +93,8 @@ void main(List<String> arguments) async {
           "\nERROR: expecting five (5) records for latest records search but got: '${found}'.");
       exit(3);
     }
-    stdout.writeln("Search of '${damt.dbRecordCount}' records found '${found}' matches.");
+    stdout.writeln(
+        "Search of '${damt.dbRecordCount}' records found '${found}' matches.");
     damt.dbClose();
     exit(0);
   }
@@ -136,7 +137,7 @@ void main(List<String> arguments) async {
 }
 
 // perform search of the database for provided [findme] string value
-Future<bool> searchDataBase (String findItem) async {
+Future<bool> searchDataBase(String findItem) async {
   stdout.writeln("\nSearching for acronym: '${findItem}'...");
   Damt damt = Damt();
   await damt.create();

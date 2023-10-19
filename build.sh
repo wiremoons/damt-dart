@@ -20,10 +20,18 @@ check_status () {
 
 printf "\n\n [*]  Running 'dart pub update' to check packages are current...\n\n"
 dart pub update
+check_status
 printf "\n\n [*]  Running 'dart format' to check source code files...\n\n"
+# to apply formating fixes run:  dart format .
 dart format --output=none --set-exit-if-changed .
+check_status
 printf "\n\n [*]  Running 'dart analyse' to check source code files...\n\n"
 dart analyze
+check_status
+printf "\n\n [*]  Running 'dart fix' to check source code files...\n\n"
+# to apply fixes run:  dart fix 
+dart fix -n
+check_status
 printf "\n\n [*]  Building '%s'...\n\n" "$DARTAPP"
 if [[ ! -d ./build ]]; then
   mkdir ./build

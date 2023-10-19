@@ -30,7 +30,14 @@ class DbManage {
 
   DbManage(String dBPath) {
     dbPath = dBPath;
-    db = sqlite3.open(dbPath);
+    try {
+      db = sqlite3.open(dbPath);
+    } catch (e) {
+      stdout.writeln("${sqliteLibError()}");
+      stderr.writeln("ERROR: failed to open the SQLite database: '${dbPath}'.");
+      stderr.writeln("${e}");
+      exit(1);
+    }
   }
 
   // Search for the provided acronym in the SQLite database and output any records found.
@@ -75,21 +82,22 @@ DESCRIPTION: ${row['description']}
   int latestAcronyms() {
     int findCount = 0;
     ResultSet searchResult = db.select(
-      "select rowid, ifnull(Acronym,'') as acronym, ifnull(Definition,'') as definition, ifnull(Source,'') as source,ifnull(Description,'') as description, ifnull(Changed,'') as changed from ACRONYMS Order by rowid DESC LIMIT 5;",);
+      "select rowid, ifnull(Acronym,'') as acronym, ifnull(Definition,'') as definition, ifnull(Source,'') as source,ifnull(Description,'') as description, ifnull(Changed,'') as changed from ACRONYMS Order by rowid DESC LIMIT 5;",
+    );
     // check a result was found by the SQLite search - otherwise return
     if (searchResult.isEmpty) return findCount;
     stdout.writeln("");
     DateFormat dTFormatter =
-    DateFormat('E dd MMMM yyyy @ HH:mm:ss'); // yyyy-MM-dd HH:mm:ss
+        DateFormat('E dd MMMM yyyy @ HH:mm:ss'); // yyyy-MM-dd HH:mm:ss
     // output any results found tracking the number of records output
     for (final Row row in searchResult) {
       String lastChanged;
       int epoch = int.tryParse(row['changed']) ?? 0;
       epoch > 0
           ? lastChanged = dTFormatter
-          .format(
-          DateTime.fromMillisecondsSinceEpoch(epoch * 1000).toLocal())
-          .toString()
+              .format(
+                  DateTime.fromMillisecondsSinceEpoch(epoch * 1000).toLocal())
+              .toString()
           : lastChanged = "Unknown";
       stdout.writeln("""
 ID:          '${row['rowid']}'
@@ -137,5 +145,47 @@ DESCRIPTION: ${row['description']}
   // Close the database connection
   void closeDatabase() {
     db.dispose();
+  }
+
+  // Display help on how to install the SQLite dynamic library to allow this application to
+  // function.
+  String sqliteLibError() {
+    if (!Platform.isWindows) {
+      return """
+
+PLEASE NOTE:
+
+The SQLite shared library is needed to execute the application. Please install 
+it using your operating system package manager. The dynamic library is normally
+available on Linux as a file named: 'libsqlite3.so'.
+
+Example commands to install the library on a few common operating systems, or 
+Linux distributions, are shown below:
+
+        Fedora:    sudo dnf install sqlite-devel
+        Debian:    sudo apt install libsqlite3-dev
+        Ubuntu:    sudo apt install libsqlite3-dev
+        macOS:     already included with macOS 
+        FreeBSD:   sudo pkg install sqlite3
+
+        """;
+    }
+    return """
+
+PLEASE NOTE:
+
+The SQLite shared library is needed to execute the application. Please install 
+the Dynamic Link Libray (DLL) file normally named 'sqlite3.dll' in the same location
+as this application. The Windows DLL can be freely obtained from:
+
+       SQLite3 Downloads : https://www.sqlite.org/download.html
+
+page under the section: *Precompiled Binaries for Windows*. Example Steps to follow are:
+      
+       curl -OL https://sqlite.org/2023/sqlite-dll-win32-x86-3430200.zip
+       unzip sqlite-dll-win32-x86-3430200.zip
+       copy the 'sqlite3.dll' to the same diretory as this application: 'damt.exe'
+
+    """;
   }
 }
